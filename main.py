@@ -10,8 +10,20 @@ WORDS = ["jumps", "laziest", "brown", "a", "quick", "fox", "the", "dog", "over"]
 # comparison value as determined by calling the function passed in the key
 # parameter on it. This will be very similar to the min_function_custom
 # developed in the Learn reading.
-def my_max(collection, key):
-    pass
+def my_max(collection, key=None):
+    [1, 2, 3]
+    max = None
+
+    for item in collection:
+        if key:
+            if not max or key(item) > key(max):
+                max = item
+        else:
+            if not max or item > max:
+                max = item
+
+    return max
+
 
 # Implement a custom version of filter, called my_filter
 # my_filter takes a function (should_keep) which it will call on every item in
@@ -22,7 +34,9 @@ def my_max(collection, key):
 def my_filter(should_keep, collection):
     # if you've encountered list comprehensions, this would be a
     # great place to use one
-    pass
+    new_list = [item for item in collection if should_keep(item)]
+
+    return new_list
 
 # Implement a custom version of map, called my_map
 # my_map takes a function (transform) which it will call on every item in the
@@ -33,7 +47,9 @@ def my_filter(should_keep, collection):
 def my_map(transform, collection):
     # if you've encountered list comprehensions, this would be a
     # great place to use one
-    pass
+    new_list = [transform(item) for item in collection]
+
+    return new_list
 
 #################################################
 # NO CODE BELOW THIS POINT NEEDS TO BE MODIFIED #
@@ -91,6 +107,7 @@ def get_word_lengths(words):
     return lengths
 
 def main():
+
     # test behavior of my_max (through using the helpers)
     assert get_last_word_alphabetically(WORDS) == "the"
     print("get_last_word_alphabetically PASSED!")
