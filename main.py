@@ -10,17 +10,12 @@ WORDS = ["jumps", "laziest", "brown", "a", "quick", "fox", "the", "dog", "over"]
 # comparison value as determined by calling the function passed in the key
 # parameter on it. This will be very similar to the min_function_custom
 # developed in the Learn reading.
-def my_max(collection, key=None):
-    [1, 2, 3]
+def my_max(collection, key=lambda item : item):
     max = None
 
     for item in collection:
-        if key:
-            if not max or key(item) > key(max):
-                max = item
-        else:
-            if not max or item > max:
-                max = item
+        if not max or key(item) > key(max):
+            max = item
 
     return max
 
